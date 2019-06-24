@@ -313,4 +313,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     WfdCommon
 
+# Set boot SPL
+BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
+
 PRODUCT_VENDOR_KERNEL_HEADERS := device/xiaomi/sdm845-common/kernel-headers
