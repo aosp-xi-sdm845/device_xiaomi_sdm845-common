@@ -16,8 +16,7 @@ $(call inherit-product-if-exists, vendor/xiaomi/sdm845-common/sdm845-common-vend
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-aosip
+    $(LOCAL_PATH)/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -120,10 +119,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.contexthub@1.0-impl.generic \
     android.hardware.contexthub@1.0-service
-
-# Device-specific settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
 
 # Display
 PRODUCT_PACKAGES += \
@@ -285,10 +280,6 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
     android.hardware.thermal@1.0-service \
     thermal.sdm845
-
-# ThermalController app
-PRODUCT_PACKAGES += \
-    ThermalController
 
 # USB
 PRODUCT_PACKAGES += \
