@@ -4,9 +4,12 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+PRODUCT_SOONG_NAMESPACES += \
+    hardware/google/interfaces \
+    device/xiaomi/sdm845-common \
+    hardware/qcom/sdm845
+
+$(call inherit-product, $(LOCAL_PATH)/utils.mk)
 
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/xiaomi/sdm845-common/sdm845-common-vendor.mk)
@@ -316,3 +319,5 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+PRODUCT_VENDOR_KERNEL_HEADERS := device/xiaomi/sdm845-common/kernel-headers

@@ -25,7 +25,8 @@ LOCAL_SRC_FILES := \
     utils.c
 
 LOCAL_C_INCLUDES := external/libxml2/include \
-                    external/icu/icu4c/source/common
+                    external/icu/icu4c/source/common \
+                    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 
 LOCAL_SHARED_LIBRARIES := \
     android.hardware.power@1.2 \
@@ -38,9 +39,10 @@ LOCAL_SHARED_LIBRARIES := \
     libutils \
     libxml2
 
-LOCAL_HEADER_LIBRARIES := generated_kernel_headers
 LOCAL_HEADER_LIBRARIES += libutils_headers
 LOCAL_HEADER_LIBRARIES += libhardware_headers
+
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_CFLAGS += -Werror -Wall -Wno-unused-parameter
 LOCAL_CFLAGS += -DINTERACTION_BOOST
