@@ -5,7 +5,6 @@
 #
 
 PRODUCT_SOONG_NAMESPACES += \
-    hardware/google/interfaces \
     device/xiaomi/sdm845-common \
     hardware/qcom/sdm845
 
