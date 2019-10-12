@@ -304,9 +304,39 @@ PRODUCT_PACKAGES += \
     android.hardware.vr@1.0-service \
     vr.sdm845
 
+# WLAN driver configuration files
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/wifi_concurrency_cfg.txt:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_concurrency_cfg.txt \
+    $(LOCAL_PATH)/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini \
+
+HOSTAPD := hostapd
+HOSTAPD += hostapd_cli
+PRODUCT_PACKAGES += $(HOSTAPD)
+
+WPA := wpa_supplicant.conf
+WPA += wpa_supplicant_wcn.conf
+WPA += wpa_supplicant
+PRODUCT_PACKAGES += $(WPA)
+
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+PRODUCT_PACKAGES += wpa_cli
+endif
+
 # WiFi
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service
+    android.hardware.wifi@1.0-service \
+    wificond \
+    libcld80211 \
+    libkeystore-engine-wifi-hidl \
+    libkeystore-wifi-hidl \
+    libwifi-hal-qcom \
+    libwifi-hal \
+    libwpa_client
+
+LIB_NL := libnl_32
+PRODUCT_PACKAGES += $(LIB_NL)
 
 # WiFi Display
 PRODUCT_PACKAGES += \
